@@ -1,4 +1,4 @@
-name: 部署 Hugo 到 GitHub Pages
+name: 构建 Hugo 网站
 
 on:
   push:
@@ -22,25 +22,21 @@ jobs:
       - name: 构建网站
         run: hugo --minify
 
-      - name: 上传构建产物
-        uses: actions/upload-artifact@v4
+      - name: 上传网站文件
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: hugo-site
           path: ./public
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: 下载构建产物
-        uses: actions/download-artifact@v4
-        with:
-          name: hugo-site
-          path: ./public
-
       - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./public
-          force_orphan: true
+        id: deployment
+        uses: actions/deploy-pages@v4
