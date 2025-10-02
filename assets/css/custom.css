@@ -1,0 +1,10 @@
+body {
+    background-color: #e6f7ff;
+}
+/* 测试：让文章内容区有圆角和内边距 */
+.main {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}

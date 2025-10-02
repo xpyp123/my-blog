@@ -1,0 +1,397 @@
+# ##C语言
+
+
+
+
+
+
+
+
+
+### 指针
+
+##### 基础定义：
+
+地址别名      指针-->变量   地址-->常量
+
+所指变量类型* 名=&变量；
+
+*p-->解引用（可以修改指针所指数据值）
+
+常变量：具有常性特征
+
+- C语言：const int n=10;
+
+  侧重点-->变
+
+- c++:const int n=10;
+
+  侧重点-->常
+
+常变量指针设计：
+
+```c
+int* const p=&val;
+//p变量具有常性；指向位置不能修改（p=&num//error）
+
+const int* const p;
+//p指向值不能通过p修改，p指向不能通过p修改，
+
+const int* p=&val;
+//const修饰*p;p指向的值具有常性（*p=1//error)
+//权限小
+
+int *p2=&val;
+//权限对等
+```
+
+**注意：**指针级别一致，权限要缩小
+
+```c
+
+```
+
+void* -->指针 void*指针不能进行解引用（无类型指针）
+
+void* 目的只是为了保存地址值
+
+
+
+### 动态内存  
+
+内存对齐
+
+
+
+
+
+x86 4G
+
+由低地址到高地址进行内存开辟：
+
+0x0000 0000
+
+| 128M禁止访问                                      |
+| :------------------------------------------------ |
+| 代码区.text                                       |
+| 数据区.data 全局变量 静态系列变量 字符串常量      |
+| 堆区(1.5G-1.9G)：.heap malloc calloc free realloc |
+| 栈区：函数内设计（形参，局部变量）  Windows默认1M |
+| 内核区                                            |
+
+0xffff ffff
+
+```c
+int* p=NULL;
+int* p;//随机值，野指针（悬挂指针）
+*p--异常终止
+```
+
+malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址
+
+void*指针不能进行指针运算，不能进行解引用
+
+
+
+使用动态内存：
+
+1.malloc/calloc/realloc 堆区内存大
+
+2.内存容量的动态变化
+
+堆区程序员自己管理内存，要自己申请释放（释放存在问题造成内存泄漏）
+
+```c
+int8 arr=(int*)malloc(25*sizeod(int));-->堆区开辟100B arr为变量值
+*(arr+0)--第一个元素(4B) arr[0]
+ 
+arr[25];-->栈区   arr为常量值
+```
+
+eg:创建一个空间 存储10个学生
+
+```c
+Student stus[10]; //内存定值 不能对stus进行内存大小改变
+
+Student*stus=(Student*)malloc(10*sizeof(Student));//堆区内存大小，可以通过realloc进行扩容
+free(stus);  // 释放堆内存
+stus = NULL;  // 避免野指针
+```
+
+
+
+
+
+**free出现崩溃原因：**
+
+1）对同一块堆区内存，多次释放-->可以在释放后手动设为NULL
+
+2）一定要释放堆区空间
+
+```c
+int arr[10]; free(arr);//error
+```
+
+3）free()必须传入malloc()返回的原始地址，内存管理器只记录原始分配地址，偏移后的地址无法正确释放
+
+```
+int* p=(int*)malloc(100);
+p++;
+free(p);//error
+```
+
+free如何通过指针知道自己释放内存大小？
+
+1）申请内存时 指针头+所需内存大小
+
+​       指针头-->申请内存大小+魔数（看数据是否完整）
+
+
+
+calloc-->堆区申请    malloc-->申请内存 无初始化     realloc-->类型默认值 零 初始化
+
+
+
+malloc使用流程：
+
+```c
+int* p=(int*)malloc(10*sizeof(int));
+if(p==NULL)
+{
+   exit(FALURE);//中断
+}
+//使用：
+for(int i=0;i<10;i++) p[i]=i++;......
+   
+free(p);
+p=NULL;//防止野指针
+```
+
+
+
+relloc
+
+使用前提：一定由于malloc/calloc申请内存不足时，才使用relloc或者需要对空间进行缩小时使用
+
+扩容原理
+
+1）原蹲在连续空间足以进行容量添加，原空间后直接扩容
+
+2）原内存后不存在足够空间进行容量添加重新在新空闲内存区域找到足够大的空间足以容纳新容量，将原空间数据拷贝到新内存中释放原空间
+
+3）整个堆区没有足够空间容纳新容量，此时扩容失败  realloc返回值NULL
+
+函数使用
+
+```c
+int*p = (int*)malloc(10*sizeof(int));
+if(p == NULL)  return; //内存申请失败
+
+//假设内存不足时 
+p = (int*)realloc(p,2*10*sizeof(int)); //扩的内存地址，新内存总大小B
+```
+
+
+
+## 文件
+
+内容存储  进程  数据-->内存 存储数据量小，断电就消失
+
+文件/数据库-->永久性储存   磁盘中
+
+1.文件操作：文件路径  相对路径：“1.png”    
+
+​                                          绝对路径：C ,D ,E
+
+2.分类
+
+1）文本文件  .txt  .c  .cpp   .java   .py....
+
+2）二进制文件（多媒体文件）：.mp3   .mv     .png....
+
+
+
+fopen--->文件打开     FILE* fopen（文件路径，打开模式）;
+
+​                                     文件打开失败  FILE* 返回值NULL
+
+打开模式：
+
+只写            w        若文件不存在，会创建新文件；若文件存在，清空原文件
+
+只读             r         若文件不存在，打开失败返回NULL；存在 ，打开
+
+追加写入      a        若文件不存在，会创建新文件；若文件存在，会文件尾巴追加写入
+
+读写模式       w+     可读可写，打开不存在创建，存在清空
+
+​                        r+     读写，----
+
+​                        a+      -----
+
+
+
+```c
+//int main()
+//{
+//	FILE* fp = fopen("day01.cpp", "r");
+//	if (fp == NULL) return 0;//打开文件失败
+//	char buff[100] = {0};
+//	fread(buff, sizeof(char), 99, fp);
+//
+//	//printf("%s",buff);
+//	fprintf(stdout, "%s", buff);
+//
+//	fclose(fp);
+//	return 0;
+//}
+```
+
+
+
+```c
+int main()
+{
+	//在文件末尾追加hello写入
+	//方法一:
+	/*FILE* fp = fopen("day01.cpp", "r+");
+	if (fp == NULL) return 0;//打开文件失败
+	//光标开头
+	//移动光标文件末尾
+	fseek(fp,0,SEEK_END);
+	*/
+	//方法二:
+	FILE* fp = fopen("day01.cpp","a");
+	if (fp == NULL) return 0;
+
+	fwrite("hello",1,5,fp);
+
+	fclose(fp);
+	return 0;
+}
+```
+
+
+
+
+
+## 枚举 
+
+枚举本质 整型 
+
+1.定义      
+
+```c
+typedef enum Color{ red,green,blue } Color;                                          0    1     2
+enum Color {red=5,green,blue=2,while};             
+              5      6     2     3
+```
+
+2.使用    
+
+```c
+enum Color c=值必须为枚举类型中的任意元
+```
+
+ **注意：**       
+
+```c
+enum Color c=5;//编译不通过-->底层相同，类型不同   
+
+enum Color c=(enum Color)5;//使用强转
+```
+
+3.结构：
+
+```
+//Init();//返回值 参数enum Color tred, green),
+int main ()
+{
+     int choice;
+     do
+     {
+        printf("请输入0-red 1-green:")
+        scanf("%d”,  &choice);
+     }while(choice!=0&&choice!=1);
+     enum Color e=(enum Color)choice,
+     switch(c)
+     {
+        case red:
+        printf("红色\n"); break;
+        case green:
+        printf("绿色\n”);break;
+     }
+        return 0;
+ }
+```
+
+
+
+## 图形界面
+
+1）easyx库
+
+##### 头文件：
+
+```c
+#include<graphocs.h>
+```
+
+##### 窗口的调用：
+
+大小：
+
+```C
+initgraph(300,800);
+```
+
+颜色:
+
+```c
+setbkcolor(WHITE);
+setbkcolor(RGB(num,num,num));//查找颜色的三原色数据，放入括号
+setbkcolor(RGB(0xcc,0xd5,0xf0));//16进制，按色号设置参数
+cleardevice();//清除原来颜色
+```
+
+ 窗口贴图:
+
+```
+IMAGE val;
+loadimage(&val,"img.九宫格.jpg",500.800.true)；//图片可以拉伸
+putimage(0,0,&bkimg);
+```
+
+| 路径类型 | 定义                                                         |
+| :------: | :----------------------------------------------------------- |
+| 绝对路径 | 从文件系统的**根目录**开始，完整描述文件位置的路径----C,D,E等开头的路径（斜杠要改为反斜杠/） |
+| 相对路径 | 以程序的 “当前工作目录”为基准，描述文件位置的路径。          |
+
+退出：
+
+```
+ system("pause");//getchar();
+```
+
+##### 监听鼠标事件
+
+```c
+MOUSEMSG msg;
+while(1)
+{
+   msg=GetMouseMsg();
+   if(msg.uMsg==WM_LBUTTONDOWN)
+   {
+      printf("x=%d,y=%d\n",msg.x,msg.y);
+   }
+}
+```
+
+
+
+**结构体大小怎么算？**
+
+
+
+
+

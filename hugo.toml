@@ -1,0 +1,28 @@
+baseURL = 'https://yiping.gitcode.io/'
+languageCode = 'zh-CN'
+title = 'Stitch的博客'
+theme = 'PaperMod'
+
+[params]
+  author = 'Stitch'
+  [params.profileMode]
+    enabled = true
+    title = "Stitch的博客"
+    subtitle = "热爱编程的学习者"
+    imageUrl = "/avatar.jpg"
+    buttons = [
+      { name = "📚 查看文章", url = "/posts/" }
+    ]
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "首页"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "posts"
+    name = "文章"
+    url = "/posts/"
+    weight = 2
+ 
