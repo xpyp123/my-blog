@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 检出代码
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
 
@@ -23,7 +23,7 @@ jobs:
         run: hugo --minify
 
       - name: 上传构建产物
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: hugo-site
           path: ./public
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 下载构建产物
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: hugo-site
           path: ./public
