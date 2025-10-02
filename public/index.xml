@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Stitch的博客</title>
-    <link>http://localhost:1313/</link>
+    <link>https://xpyp123.github.io/my-blog/</link>
     <description>Recent content on Stitch的博客</description>
     <generator>Hugo -- 0.150.1</generator>
     <language>zh-CN</language>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://xpyp123.github.io/my-blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title></title>
-      <link>http://localhost:1313/posts/%E6%8C%87%E9%92%88/</link>
+      <link>https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/%E6%8C%87%E9%92%88/</guid>
+      <guid>https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/</guid>
       <description>&lt;h1 id=&#34;c语言&#34;&gt;##C语言&lt;/h1&gt;
 &lt;h3 id=&#34;指针&#34;&gt;指针&lt;/h3&gt;
 &lt;h5 id=&#34;基础定义&#34;&gt;基础定义：&lt;/h5&gt;

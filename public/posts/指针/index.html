@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>Stitch的博客</title>
 <meta name="keywords" content="">
 <meta name="description" content="##C语言
@@ -75,16 +75,16 @@ int* p;//随机值，野指针（悬挂指针）
 *p--异常终止
 malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址">
 <meta name="author" content="Stitch">
-<link rel="canonical" href="http://localhost:1313/posts/%E6%8C%87%E9%92%88/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.a482bf00fa5c046040ef7973ad5fdf5657890cacb596c93f1382f664ca542074.css" integrity="sha256-pIK/APpcBGBA73lzrV/fVleJDKy1lsk/E4L2ZMpUIHQ=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="canonical" href="https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/">
+<link crossorigin="anonymous" href="/my-blog/assets/css/stylesheet.a482bf00fa5c046040ef7973ad5fdf5657890cacb596c93f1382f664ca542074.css" integrity="sha256-pIK/APpcBGBA73lzrV/fVleJDKy1lsk/E4L2ZMpUIHQ=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://xpyp123.github.io/my-blog/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://xpyp123.github.io/my-blog/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://xpyp123.github.io/my-blog/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://xpyp123.github.io/my-blog/apple-touch-icon.png">
+<link rel="mask-icon" href="https://xpyp123.github.io/my-blog/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/posts/%E6%8C%87%E9%92%88/">
+<link rel="alternate" hreflang="en" href="https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/">
 <noscript>
     <style>
         #theme-toggle,
@@ -121,7 +121,154 @@ malloc 返回值为 void* 类型（无类型指针），表示分配的内存块
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/">
+  <meta property="og:site_name" content="Stitch的博客">
+  <meta property="og:title" content="Stitch的博客">
+  <meta property="og:description" content="##C语言 指针 基础定义： 地址别名 指针–&gt;变量 地址–&gt;常量
+所指变量类型* 名=&amp;变量；
+*p–&gt;解引用（可以修改指针所指数据值）
+常变量：具有常性特征
+C语言：const int n=10;
+侧重点–&gt;变
+c&#43;&#43;:const int n=10;
+侧重点–&gt;常
+常变量指针设计：
+int* const p=&amp;val; //p变量具有常性；指向位置不能修改（p=&amp;num//error） const int* const p; //p指向值不能通过p修改，p指向不能通过p修改， const int* p=&amp;val; //const修饰*p;p指向的值具有常性（*p=1//error) //权限小 int *p2=&amp;val; //权限对等 **注意：**指针级别一致，权限要缩小
+void* –&gt;指针 void*指针不能进行解引用（无类型指针）
+void* 目的只是为了保存地址值
+动态内存 内存对齐
+x86 4G
+由低地址到高地址进行内存开辟：
+0x0000 0000
+128M禁止访问 代码区.text 数据区.data 全局变量 静态系列变量 字符串常量 堆区(1.5G-1.9G)：.heap malloc calloc free realloc 栈区：函数内设计（形参，局部变量） Windows默认1M 内核区 0xffff ffff
+int* p=NULL; int* p;//随机值，野指针（悬挂指针） *p--异常终止 malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址">
+  <meta property="og:locale" content="zh-CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="">
+<meta name="twitter:description" content="##C语言
+指针
+基础定义：
+地址别名      指针&ndash;&gt;变量   地址&ndash;&gt;常量
+所指变量类型* 名=&amp;变量；
+*p&ndash;&gt;解引用（可以修改指针所指数据值）
+常变量：具有常性特征
+
+
+C语言：const int n=10;
+侧重点&ndash;&gt;变
+
+
+c&#43;&#43;:const int n=10;
+侧重点&ndash;&gt;常
+
+
+常变量指针设计：
+int* const p=&amp;val;
+//p变量具有常性；指向位置不能修改（p=&amp;num//error）
+
+const int* const p;
+//p指向值不能通过p修改，p指向不能通过p修改，
+
+const int* p=&amp;val;
+//const修饰*p;p指向的值具有常性（*p=1//error)
+//权限小
+
+int *p2=&amp;val;
+//权限对等
+**注意：**指针级别一致，权限要缩小
+void* &ndash;&gt;指针 void*指针不能进行解引用（无类型指针）
+void* 目的只是为了保存地址值
+动态内存
+内存对齐
+x86 4G
+由低地址到高地址进行内存开辟：
+0x0000 0000
+
+  
+      
+          128M禁止访问
+      
+  
+  
+      
+          代码区.text
+      
+      
+          数据区.data 全局变量 静态系列变量 字符串常量
+      
+      
+          堆区(1.5G-1.9G)：.heap malloc calloc free realloc
+      
+      
+          栈区：函数内设计（形参，局部变量）  Windows默认1M
+      
+      
+          内核区
+      
+  
+
+0xffff ffff
+int* p=NULL;
+int* p;//随机值，野指针（悬挂指针）
+*p--异常终止
+malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://xpyp123.github.io/my-blog/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "",
+      "item": "https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "",
+  "name": "",
+  "description": "##C语言 指针 基础定义： 地址别名 指针\u0026ndash;\u0026gt;变量 地址\u0026ndash;\u0026gt;常量\n所指变量类型* 名=\u0026amp;变量；\n*p\u0026ndash;\u0026gt;解引用（可以修改指针所指数据值）\n常变量：具有常性特征\nC语言：const int n=10;\n侧重点\u0026ndash;\u0026gt;变\nc++:const int n=10;\n侧重点\u0026ndash;\u0026gt;常\n常变量指针设计：\nint* const p=\u0026amp;val; //p变量具有常性；指向位置不能修改（p=\u0026amp;num//error） const int* const p; //p指向值不能通过p修改，p指向不能通过p修改， const int* p=\u0026amp;val; //const修饰*p;p指向的值具有常性（*p=1//error) //权限小 int *p2=\u0026amp;val; //权限对等 **注意：**指针级别一致，权限要缩小\nvoid* \u0026ndash;\u0026gt;指针 void*指针不能进行解引用（无类型指针）\nvoid* 目的只是为了保存地址值\n动态内存 内存对齐\nx86 4G\n由低地址到高地址进行内存开辟：\n0x0000 0000\n128M禁止访问 代码区.text 数据区.data 全局变量 静态系列变量 字符串常量 堆区(1.5G-1.9G)：.heap malloc calloc free realloc 栈区：函数内设计（形参，局部变量） Windows默认1M 内核区 0xffff ffff\nint* p=NULL; int* p;//随机值，野指针（悬挂指针） *p--异常终止 malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "##C语言 指针 基础定义： 地址别名 指针–\u003e变量 地址–\u003e常量\n所指变量类型* 名=\u0026变量；\n*p–\u003e解引用（可以修改指针所指数据值）\n常变量：具有常性特征\nC语言：const int n=10;\n侧重点–\u003e变\nc++:const int n=10;\n侧重点–\u003e常\n常变量指针设计：\nint* const p=\u0026val; //p变量具有常性；指向位置不能修改（p=\u0026num//error） const int* const p; //p指向值不能通过p修改，p指向不能通过p修改， const int* p=\u0026val; //const修饰*p;p指向的值具有常性（*p=1//error) //权限小 int *p2=\u0026val; //权限对等 **注意：**指针级别一致，权限要缩小\nvoid* –\u003e指针 void*指针不能进行解引用（无类型指针）\nvoid* 目的只是为了保存地址值\n动态内存 内存对齐\nx86 4G\n由低地址到高地址进行内存开辟：\n0x0000 0000\n128M禁止访问 代码区.text 数据区.data 全局变量 静态系列变量 字符串常量 堆区(1.5G-1.9G)：.heap malloc calloc free realloc 栈区：函数内设计（形参，局部变量） Windows默认1M 内核区 0xffff ffff\nint* p=NULL; int* p;//随机值，野指针（悬挂指针） *p--异常终止 malloc 返回值为 void* 类型（无类型指针），表示分配的内存块首地址\nvoid*指针不能进行指针运算，不能进行解引用\n使用动态内存：\n1.malloc/calloc/realloc 堆区内存大\n2.内存容量的动态变化\n堆区程序员自己管理内存，要自己申请释放（释放存在问题造成内存泄漏）\nint8 arr=(int*)malloc(25*sizeod(int));--\u003e堆区开辟100B arr为变量值 *(arr+0)--第一个元素(4B) arr[0] arr[25];--\u003e栈区 arr为常量值 eg:创建一个空间 存储10个学生\nStudent stus[10]; //内存定值 不能对stus进行内存大小改变 Student*stus=(Student*)malloc(10*sizeof(Student));//堆区内存大小，可以通过realloc进行扩容 free(stus); // 释放堆内存 stus = NULL; // 避免野指针 free出现崩溃原因：\n1）对同一块堆区内存，多次释放–\u003e可以在释放后手动设为NULL\n2）一定要释放堆区空间\nint arr[10]; free(arr);//error 3）free()必须传入malloc()返回的原始地址，内存管理器只记录原始分配地址，偏移后的地址无法正确释放\nint* p=(int*)malloc(100);\rp++;\rfree(p);//error free如何通过指针知道自己释放内存大小？\n1）申请内存时 指针头+所需内存大小\n​ 指针头–\u003e申请内存大小+魔数（看数据是否完整）\ncalloc–\u003e堆区申请 malloc–\u003e申请内存 无初始化 realloc–\u003e类型默认值 零 初始化\nmalloc使用流程：\nint* p=(int*)malloc(10*sizeof(int)); if(p==NULL) { exit(FALURE);//中断 } //使用： for(int i=0;i\u003c10;i++) p[i]=i++;...... free(p); p=NULL;//防止野指针 relloc\n使用前提：一定由于malloc/calloc申请内存不足时，才使用relloc或者需要对空间进行缩小时使用\n扩容原理\n1）原蹲在连续空间足以进行容量添加，原空间后直接扩容\n2）原内存后不存在足够空间进行容量添加重新在新空闲内存区域找到足够大的空间足以容纳新容量，将原空间数据拷贝到新内存中释放原空间\n3）整个堆区没有足够空间容纳新容量，此时扩容失败 realloc返回值NULL\n函数使用\nint*p = (int*)malloc(10*sizeof(int)); if(p == NULL) return; //内存申请失败 //假设内存不足时 p = (int*)realloc(p,2*10*sizeof(int)); //扩的内存地址，新内存总大小B 文件 内容存储 进程 数据–\u003e内存 存储数据量小，断电就消失\n文件/数据库–\u003e永久性储存 磁盘中\n1.文件操作：文件路径 相对路径：“1.png”\n​ 绝对路径：C ,D ,E\n2.分类\n1）文本文件 .txt .c .cpp .java .py….\n2）二进制文件（多媒体文件）：.mp3 .mv .png….\nfopen—\u003e文件打开 FILE* fopen（文件路径，打开模式）;\n​ 文件打开失败 FILE* 返回值NULL\n打开模式：\n只写 w 若文件不存在，会创建新文件；若文件存在，清空原文件\n只读 r 若文件不存在，打开失败返回NULL；存在 ，打开\n追加写入 a 若文件不存在，会创建新文件；若文件存在，会文件尾巴追加写入\n读写模式 w+ 可读可写，打开不存在创建，存在清空\n​ r+ 读写，—-\n​ a+ —–\n//int main() //{ //\tFILE* fp = fopen(\"day01.cpp\", \"r\"); //\tif (fp == NULL) return 0;//打开文件失败 //\tchar buff[100] = {0}; //\tfread(buff, sizeof(char), 99, fp); // //\t//printf(\"%s\",buff); //\tfprintf(stdout, \"%s\", buff); // //\tfclose(fp); //\treturn 0; //} int main() { //在文件末尾追加hello写入 //方法一: /*FILE* fp = fopen(\"day01.cpp\", \"r+\"); if (fp == NULL) return 0;//打开文件失败 //光标开头 //移动光标文件末尾 fseek(fp,0,SEEK_END); */ //方法二: FILE* fp = fopen(\"day01.cpp\",\"a\"); if (fp == NULL) return 0; fwrite(\"hello\",1,5,fp); fclose(fp); return 0; } 枚举 枚举本质 整型\n1.定义\ntypedef enum Color{ red,green,blue } Color; 0 1 2 enum Color {red=5,green,blue=2,while}; 5 6 2 3 2.使用\nenum Color c=值必须为枚举类型中的任意元 注意：\nenum Color c=5;//编译不通过--\u003e底层相同，类型不同 enum Color c=(enum Color)5;//使用强转 3.结构：\n//Init();//返回值 参数enum Color tred, green),\rint main ()\r{\rint choice;\rdo\r{\rprintf(\"请输入0-red 1-green:\")\rscanf(\"%d”, \u0026choice);\r}while(choice!=0\u0026\u0026choice!=1);\renum Color e=(enum Color)choice,\rswitch(c)\r{\rcase red:\rprintf(\"红色\\n\"); break;\rcase green:\rprintf(\"绿色\\n”);break;\r}\rreturn 0;\r} 图形界面 1）easyx库\n头文件： #include 窗口的调用： 大小：\ninitgraph(300,800); 颜色:\nsetbkcolor(WHITE); setbkcolor(RGB(num,num,num));//查找颜色的三原色数据，放入括号 setbkcolor(RGB(0xcc,0xd5,0xf0));//16进制，按色号设置参数 cleardevice();//清除原来颜色 窗口贴图:\nIMAGE val;\rloadimage(\u0026val,\"img.九宫格.jpg\",500.800.true)；//图片可以拉伸\rputimage(0,0,\u0026bkimg); 路径类型 定义 绝对路径 从文件系统的根目录开始，完整描述文件位置的路径—-C,D,E等开头的路径（斜杠要改为反斜杠/） 相对路径 以程序的 “当前工作目录”为基准，描述文件位置的路径。 退出：\nsystem(\"pause\");//getchar(); 监听鼠标事件 MOUSEMSG msg; while(1) { msg=GetMouseMsg(); if(msg.uMsg==WM_LBUTTONDOWN) { printf(\"x=%d,y=%d\\n\",msg.x,msg.y); } } 结构体大小怎么算？\n",
+  "wordCount" : "390",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "author":{
+    "@type": "Person",
+    "name": "Stitch"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://xpyp123.github.io/my-blog/posts/%E6%8C%87%E9%92%88/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Stitch的博客",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://xpyp123.github.io/my-blog/favicon.ico"
+    }
+  }
+}
+</script>
 </head>
 
 <body class="" id="top">
@@ -139,7 +286,7 @@ malloc 返回值为 void* 类型（无类型指针），表示分配的内存块
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Stitch的博客 (Alt + H)">Stitch的博客</a>
+            <a href="https://xpyp123.github.io/my-blog/" accesskey="h" title="Stitch的博客 (Alt + H)">Stitch的博客</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -165,12 +312,12 @@ malloc 返回值为 void* 类型（无类型指针），表示分配的内存块
         </div>
         <ul id="menu">
             <li>
-                <a href="http://localhost:1313/" title="首页">
+                <a href="https://xpyp123.github.io/my-blog/" title="首页">
                     <span>首页</span>
                 </a>
             </li>
             <li>
-                <a href="http://localhost:1313/posts/" title="文章">
+                <a href="https://xpyp123.github.io/my-blog/posts/" title="文章">
                     <span>文章</span>
                 </a>
             </li>
@@ -446,7 +593,7 @@ putimage(0,0,&amp;bkimg);
     </main>
     
 <footer class="footer">
-        <span>&copy; 2025 <a href="http://localhost:1313/">Stitch的博客</a></span> · 
+        <span>&copy; 2025 <a href="https://xpyp123.github.io/my-blog/">Stitch的博客</a></span> · 
 
     <span>
         Powered by
