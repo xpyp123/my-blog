@@ -1,15 +1,17 @@
-baseURL = 'https://yiping.gitcode.io/'
+baseURL = 'https://my-blog-2bo.pages.dev/'
 languageCode = 'zh-CN'
 title = 'Stitch的博客'
 theme = 'PaperMod'
 
 [params]
   author = 'Stitch'
+  authorImage = "/avatar.jpg" 
+  
   [params.profileMode]
     enabled = true
     title = "Stitch的博客"
     subtitle = "热爱编程的学习者"
-    imageUrl = "/avatar.jpg"
+    imageUrl = "/avatar.jpg"  # 改为相对路径，去掉重复斜杠
     buttons = [
       { name = "📚 查看文章", url = "/posts/" }
     ]
