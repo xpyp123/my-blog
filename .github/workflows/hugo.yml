@@ -1,18 +1,19 @@
-name: 部署Hugo网站到Pages
+name: 部署 Hugo 到 GitHub Pages
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  部署:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: 检出代码
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
-      - name: 安装Hugo
+      - name: 设置 Hugo
         uses: peaceiris/actions-hugo@v2
         with:
           hugo-version: 'latest'
@@ -21,8 +22,25 @@ jobs:
       - name: 构建网站
         run: hugo --minify
 
-      - name: 部署到GitHub Pages
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v3
+        with:
+          name: hugo-site
+          path: ./public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: 下载构建产物
+        uses: actions/download-artifact@v3
+        with:
+          name: hugo-site
+          path: ./public
+
+      - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          force_orphan: true
