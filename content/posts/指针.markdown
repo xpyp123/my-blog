@@ -1,3 +1,11 @@
+```markdown
+title: "C语言"
+date: 2025-10-02
+draft: false
+tags: ["C语言"]
+toc: true  # 启用目录
+```
+
 # C语言
 
 ### 指针
